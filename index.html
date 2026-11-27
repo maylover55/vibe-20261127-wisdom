@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="버튼을 누르면 명언을 무작위로 보여주고, 나만의 명언을 저장하고 복사하거나 공유할 수 있는 페이지입니다."
+    />
+    <title>명언 생성기</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#quote">본문 명언으로 건너뛰기</a>
+
+    <header class="site-header">
+      <p class="eyebrow">오늘의 한 줄</p>
+      <h1>명언 생성기</h1>
+      <p class="lede">
+        다음 명언을 누르면 문구와 저자가 바뀝니다. 직접 적은 문장은 이 브라우저에만 저장됩니다.
+      </p>
+    </header>
+
+    <main class="layout">
+      <article class="card quote-card" aria-labelledby="quote-heading">
+        <h2 id="quote-heading" class="visually-hidden">현재 명언</h2>
+        <figure id="quote" class="quote" tabindex="0">
+          <blockquote>
+            <p id="quote-text" class="quote-text"></p>
+          </blockquote>
+          <figcaption>
+            <cite id="quote-author" class="quote-author"></cite>
+          </figcaption>
+        </figure>
+        <p id="quote-status" class="visually-hidden" aria-live="polite"></p>
+
+        <div class="actions" role="group" aria-label="명언 동작">
+          <button type="button" id="next-btn" class="btn btn-primary">다음 명언</button>
+          <button type="button" id="copy-btn" class="btn">복사하기</button>
+          <button type="button" id="share-btn" class="btn">공유하기</button>
+        </div>
+        <p id="action-status" class="status" role="status" aria-live="polite"></p>
+      </article>
+
+      <section class="card" aria-labelledby="add-heading">
+        <h2 id="add-heading">내 명언 추가</h2>
+        <p class="hint">문구와 저자를 모두 입력해야 저장됩니다.</p>
+        <form id="add-form" novalidate>
+          <div class="field">
+            <label for="quote-input">문구</label>
+            <textarea
+              id="quote-input"
+              name="text"
+              rows="3"
+              maxlength="200"
+              required
+              placeholder="마음에 남는 문장을 적어 보세요"
+            ></textarea>
+          </div>
+          <div class="field">
+            <label for="author-input">저자</label>
+            <input
+              id="author-input"
+              name="author"
+              type="text"
+              maxlength="40"
+              required
+              autocomplete="name"
+              placeholder="이름 또는 출처"
+            />
+          </div>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+          <button type="submit" class="btn btn-primary">저장하기</button>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="list-heading">
+        <div class="section-head">
+          <h2 id="list-heading">저장한 명언</h2>
+          <p id="saved-count" class="count">0개</p>
+        </div>
+        <ul id="saved-list" class="saved-list"></ul>
+        <p id="saved-empty" class="empty">아직 저장한 명언이 없습니다.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>기본 명언 20개와 직접 저장한 명언 중에서 무작위로 고릅니다.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
